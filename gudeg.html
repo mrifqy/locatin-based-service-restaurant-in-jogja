@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gudeg</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+        .content {
+            background-image: url('assets/img/gudeg.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+    </style>
+
+	 <!-- local css -->
+	 <link rel="stylesheet" href="assets/css/style.css">
+
+	 <!-- bootstrap css -->
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	 
+</head>
+<body class="content">
+	<center>
+		<h1 class="ml16">Mau makan apa hari ini?</h1>
+	</center>
+
+	<center class="tombol">
+		<div class="row justify-content-center">
+		  <div class="col-2">
+			<a href="naspad.html">
+				<button type="button" id="tombol" class="btn btn-secondary btn-lg">Nasi Padang</button>
+			</a>
+		  </div>
+		  <div class="col-2 ">
+			<a href="gacoan.html">
+				<button type="button" id="tombol" class="btn btn-secondary btn-lg">Mie Gacoan</button>
+			</a>
+		  </div>
+		  <div class="col-1 ">
+			<a href="gudeg.html">
+				<button type="button" id="tombol" class="btn btn-success btn-lg">Gudeg</button>
+			</a>
+		  </div>
+		  <div class="col-2 ">
+			<a href="warung.html">
+				<button type="button" id="tombol" class="btn btn-secondary btn-lg">Warung Makan</button>
+			</a>
+		  </div>
+		  <div class="col-2 ">
+			<a href="angkringan.html">
+				<button type="button" id="tombol" class="btn btn-secondary btn-lg">Angkringan</button>
+			</a>
+		  </div>
+          <div class="col-1 ">
+			<a href="logout.php">
+				<button type="button" id="tombol" class="btn btn-danger btn-lg">Logout</button>
+			</a>
+		  </div>
+		</div>
+	</center>
+	<br><br>
+	<center>
+		<div id="map" style="width: 800px; height: 500px;"></div>
+	</center>
+	
+	<script>
+
+		const map = L.map('map').setView([-7.76726, 110.404015], 14);
+
+		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+
+		const gudeg = L.marker([-7.770437, 110.409670]).addTo(map)
+			.bindPopup('<b>Gudeg Mercon</b><br />Seturan').openPopup();
+
+		const gudeg2 = L.marker([-7.783137, 110.429913]).addTo(map)
+			.bindPopup('<b>Gudeg Go</b><br />Maguwoharjo').openPopup();
+        
+        const gudeg3 = L.marker([-7.783368, 110.428656]).addTo(map)
+			.bindPopup('<b>Gudeg Yu Djum Pusat</b><br />Maguwoharjo').openPopup();
+
+        const gudeg4 = L.marker([-7.777949, 110.379864]).addTo(map)
+			.bindPopup('<b>Gudeg Sagan</b><br />Caturtunggal').openPopup();
+
+        const gudeg5 = L.marker([-7.783336, 110.397976]).addTo(map)
+			.bindPopup('<b>Gudeg Mbak Wiek</b><br />Ambarrukmo').openPopup();
+
+        const gudeg6 = L.marker([-7.754226, 110.397082]).addTo(map)
+			.bindPopup('<b>Gudeg Terminal Yu Nem</b><br />Condongcatur').openPopup();
+
+        const gudeg7 = L.marker([-7.777013, 110.415241]).addTo(map)
+			.bindPopup('<b>Gudeg Ceker Sedep Raos</b><br />babarsari').openPopup();
+
+        const gudeg8 = L.marker([-7.774085, 110.413120]).addTo(map)
+			.bindPopup('<b>Gudeg 8055</b><br />Kledokan').openPopup();
+
+        const gudeg9 = L.marker([-7.768332, 110.410086]).addTo(map)
+			.bindPopup('<b>Gudeg Ceker Mbok Joyo</b><br />Seturan').openPopup();
+
+        const gudeg10 = L.marker([-7.766068, 110.379663]).addTo(map)
+			.bindPopup('<b>Gudeg Yu Djum</b><br />Mbarek').openPopup();
+
+		const popup = L.popup()
+			.setLatLng([-7.76726, 110.404015])
+			//.setContent('Mie Gacoan')
+			//.openOn(map);
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent(`Anda menekan pada peta di koordinat ${e.latlng.toString()}`)
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+
+	</script>
+	
+	<!-- moving letter js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- local js -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
