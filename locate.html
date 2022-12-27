@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Gacoan</title>
+	<title>Homepage</title>
 
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
@@ -13,6 +13,8 @@
 
 	<!-- leaflet locate -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+    
+    
 
 	<style>
 		html, body {
@@ -26,7 +28,7 @@
 			max-height: 100%;
 		}
         .content {
-            background-image: url('assets/img/gacoan.png');
+            background-image: url('assets/img/back_main2.png');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: 100% 100%;
@@ -41,10 +43,11 @@
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 	 
 </head>
-<body class="content">
-	<!-- leaflet js locate -->
-	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 
+<body class="content">
+    <!-- leaflet js locate -->
+	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+	
 	<center>
 		<h1 class="ml16">Mau makan apa hari ini?</h1>
 	</center>
@@ -58,7 +61,7 @@
 		  </div>
 		  <div class="col-2 ">
 			<a href="gacoan.html">
-				<button type="button" id="tombol" class="btn btn-success btn-lg">Mie Gacoan</button>
+				<button type="button" id="tombol" class="btn btn-secondary btn-lg">Mie Gacoan</button>
 			</a>
 		  </div>
 		  <div class="col-1 ">
@@ -76,7 +79,7 @@
 				<button type="button" id="tombol" class="btn btn-secondary btn-lg">Angkringan</button>
 			</a>
 		  </div>
-          <div class="col-1 ">
+		  <div class="col-1 ">
 			<a href="logout.php">
 				<button type="button" id="tombol" class="btn btn-danger btn-lg">Logout</button>
 			</a>
@@ -89,36 +92,28 @@
 	</center>
 	
 	<script>
+		
 
-		const map = L.map('map').setView([-7.77454, 110.369339], 13);
-		L.control.locate().addTo(map);
+		var map = L.map('map').setView([-7.774046, 110.412125], 13);
+        L.control.locate().addTo(map);
+		
 
-		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 19,
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		}).addTo(map);
 
-		const gacoan = L.marker([-7.788455, 110.375201]).addTo(map)
-			.bindPopup('<b>Mie Gacoan</b><br />Kotabaru').openPopup();
+		// const marker = L.marker([-7.774046, 110.412125]).addTo(map)
+		// 	.bindPopup('<b>Mie Gacoan</b><br />Babarsari').openPopup();
 
-		const gacoan2 = L.marker([-7.763821, 110.393314]).addTo(map)
-			.bindPopup('<b>Mie Gacoan</b><br />Gejayan').openPopup();
-        
-        const gacoan3 = L.marker([-7.752111, 110.362345]).addTo(map)
-			.bindPopup('<b>Mie Gacoan</b><br />Jombor').openPopup();
+		// const marker2 = L.marker([-7.763824, 110.393341]).addTo(map)
+		// 	.bindPopup('<b>Mie Gacoan</b><br />Gejayan').openPopup();
 
-        const gacoan4 = L.marker([-7.804621, 110.378166]).addTo(map)
-			.bindPopup('<b>Mie Gacoan</b><br />Taman Siswa').openPopup();
 
-        const gacoan5 = L.marker([-7.778414, 110.337635]).addTo(map)
-			.bindPopup('<b>Mie Gacoan</b><br />Godean').openPopup();
-
-        const gacoan6 = L.marker([-7.779809, 110.414691]).addTo(map)
-			.bindPopup('<b>Mie Gacoan</b><br />Babarsari').openPopup();
 
 
 		const popup = L.popup()
-			.setLatLng([-7.77454, 110.369339])
+			.setLatLng([-7.774046, 110.412125])
 			//.setContent('Mie Gacoan')
 			//.openOn(map);
 
@@ -128,8 +123,10 @@
 				.setContent(`Anda menekan pada peta di koordinat ${e.latlng.toString()}`)
 				.openOn(map);
 		}
+		
 
 		map.on('click', onMapClick);
+		
 
 	</script>
 	
@@ -141,5 +138,8 @@
 
     <!-- local js -->
     <script src="assets/js/script.js"></script>
+
+	
+    
 </body>
 </html>

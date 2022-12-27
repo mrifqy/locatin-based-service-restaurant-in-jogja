@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
+	<!-- leaflet locate -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
+
 	<style>
 		html, body {
 			height: 100%;
@@ -40,6 +43,8 @@
 </head>
 
 <body class="content">
+	<!-- leaflet js locate -->
+	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 	
 	<center>
 		<h1 class="ml16">Mau makan apa hari ini?</h1>
@@ -87,6 +92,7 @@
 	<script>
 
 		const map = L.map('map').setView([-7.774046, 110.412125], 13);
+		L.control.locate().addTo(map);
 
 		const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 19,
