@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 
+	<!-- leaflet routing machine -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
 	<!-- leaflet locate -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" />
 
@@ -44,6 +47,9 @@
 <body class="content">
 	<!-- leaflet js locate -->
 	<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+	<!-- leaflet js routing machine -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
 	<center>
 		<h1 class="ml16">Mau makan apa hari ini?</h1>
@@ -85,7 +91,7 @@
 	</center>
 	<br><br>
 	<center>
-		<div id="map" style="width: 800px; height: 500px;"></div>
+		<div id="map" style="width: 1300px; height: 500px;"></div>
 	</center>
 	
 	<script>
@@ -141,6 +147,20 @@
 		}
 
 		map.on('click', onMapClick);
+
+		map.on('click', function (e) {
+			console.log(e)
+			var newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+
+			L.Routing.control({
+				waypoints: [
+					//L.latLng(-7.771138, 110.386059),
+					//L.latLng(e.latlng.L.control.locate()),
+                    L.latLng(-7.761072, 110.409372),
+					L.latLng(e.latlng.lat, e.latlng.lng)
+				]
+			}).addTo(map);
+		});
 
 	</script>
 	
